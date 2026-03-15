@@ -1,0 +1,8 @@
+{
+  "name": "Sai Lakshya Talkies & Events",
+  "description": "A luxury private theatre and celebration booking system with a royal gold and dark maroon theme, featuring dynamic pricing and admin management.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
