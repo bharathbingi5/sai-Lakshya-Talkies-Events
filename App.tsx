@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Crown, X, CheckCircle, Info, Sparkles } from 'lucide-react';
@@ -42,14 +41,14 @@ function App() {
 
   const showToast = (title: string, message: string, type: 'success' | 'info' = 'success') => {
     const id = Date.now();
-    setToasts((prev) => [...prev, { id, title, message, type }]);
+    setToasts(prev => [...prev, { id, title, message, type }]);
     setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
+      setToasts(prev => prev.filter(t => t.id !== id));
     }, 5000);
   };
 
   const removeToast = (id: number) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
+    setToasts(prev => prev.filter(t => t.id !== id));
   };
 
   const handleAdminLogin = (creds: AdminCredentials) => {
@@ -69,23 +68,29 @@ function App() {
       <Router>
         <div className="min-h-screen emerald-bg text-white overflow-x-hidden">
           <Navbar isAdmin={isAdminLoggedIn} onLogout={handleAdminLogout} />
-          
+
           {/* Toast Container */}
           <div className="fixed top-24 right-6 z-[100] flex flex-col gap-4 w-full max-w-sm pointer-events-none">
-            {toasts.map((toast) => (
-              <div 
+            {toasts.map(toast => (
+              <div
                 key={toast.id}
                 className="pointer-events-auto glass-card border-[#d4af37]/50 border-l-4 p-4 rounded-xl shadow-2xl animate-fade-in-right flex gap-4 items-start relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/5 to-transparent pointer-events-none" />
-                <div className={`p-2 rounded-lg ${toast.type === 'success' ? 'bg-green-500/20 text-green-400' : 'bg-blue-500/20 text-blue-400'}`}>
+                <div
+                  className={`p-2 rounded-lg ${toast.type === 'success' ? 'bg-green-500/20 text-green-400' : 'bg-blue-500/20 text-blue-400'}`}
+                >
                   {toast.type === 'success' ? <CheckCircle size={20} /> : <Info size={20} />}
                 </div>
                 <div className="flex-grow">
-                  <h4 className="font-royal font-bold text-sm gold-gradient uppercase tracking-widest">{toast.title}</h4>
-                  <p className="text-xs text-gray-400 mt-1 font-light leading-relaxed">{toast.message}</p>
+                  <h4 className="font-royal font-bold text-sm gold-gradient uppercase tracking-widest">
+                    {toast.title}
+                  </h4>
+                  <p className="text-xs text-gray-400 mt-1 font-light leading-relaxed">
+                    {toast.message}
+                  </p>
                 </div>
-                <button 
+                <button
                   onClick={() => removeToast(toast.id)}
                   className="text-gray-500 hover:text-white transition-colors"
                 >
@@ -98,9 +103,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/book" element={<BookingPage />} />
-            <Route 
-              path="/admin" 
-              element={isAdminLoggedIn ? <AdminDashboard /> : <AdminLogin onLogin={handleAdminLogin} />} 
+            <Route
+              path="/admin"
+              element={
+                isAdminLoggedIn ? <AdminDashboard /> : <AdminLogin onLogin={handleAdminLogin} />
+              }
             />
           </Routes>
 
@@ -108,17 +115,26 @@ function App() {
             <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
               <div className="flex items-center gap-2 mb-2">
                 <Crown className="text-[#d4af37] w-8 h-8" />
-                <span className="font-royal text-2xl gold-gradient font-bold tracking-widest">SAI LAKSHYA</span>
+                <span className="font-royal text-2xl gold-gradient font-bold tracking-widest">
+                  SAI LAKSHYA
+                </span>
               </div>
               <p className="max-w-2xl text-gray-400 font-light leading-relaxed">
-                Experience entertainment like never before. From royal celebrations to intimate couple moments, we provide the perfect sanctuary for your special events.
+                Experience entertainment like never before. From royal celebrations to intimate
+                couple moments, we provide the perfect sanctuary for your special events.
               </p>
               <div className="flex gap-4 text-[#d4af37]">
-                <Link to="/" className="hover:text-white transition-colors">Home</Link>
+                <Link to="/" className="hover:text-white transition-colors">
+                  Home
+                </Link>
                 <span>•</span>
-                <Link to="/book" className="hover:text-white transition-colors">Book Now</Link>
+                <Link to="/book" className="hover:text-white transition-colors">
+                  Book Now
+                </Link>
                 <span>•</span>
-                <Link to="/admin" className="hover:text-white transition-colors">Admin</Link>
+                <Link to="/admin" className="hover:text-white transition-colors">
+                  Admin
+                </Link>
               </div>
               <p className="text-gray-500 text-sm mt-4">
                 © 2025 SAI LAKSHYA TALKIES & EVENTS. All Rights Reserved.

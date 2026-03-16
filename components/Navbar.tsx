@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Crown, LogOut } from 'lucide-react';
@@ -34,16 +33,23 @@ const Navbar: React.FC<NavbarProps> = ({ isAdmin, onLogout }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-2 group">
-            <Crown className="text-[#d4af37] group-hover:rotate-12 transition-transform duration-300" size={32} />
+            <Crown
+              className="text-[#d4af37] group-hover:rotate-12 transition-transform duration-300"
+              size={32}
+            />
             <div className="flex flex-col">
-              <span className="font-royal text-xl md:text-2xl gold-gradient font-black tracking-widest leading-none">SAI LAKSHYA</span>
-              <span className="text-[10px] text-gray-400 tracking-[0.3em] font-light">TALKIES & EVENTS</span>
+              <span className="font-royal text-xl md:text-2xl gold-gradient font-black tracking-widest leading-none">
+                SAI LAKSHYA
+              </span>
+              <span className="text-[10px] text-gray-400 tracking-[0.3em] font-light">
+                TALKIES & EVENTS
+              </span>
             </div>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <Link
                 key={link.name}
                 to={link.path}
@@ -56,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ isAdmin, onLogout }) => {
               </Link>
             ))}
             {isAdmin && (
-              <button 
+              <button
                 onClick={onLogout}
                 className="flex items-center gap-2 text-red-400 hover:text-red-300 font-royal text-sm transition-colors"
               >
@@ -88,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ isAdmin, onLogout }) => {
       {isOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/20 animate-fade-in-down">
           <div className="px-4 pt-4 pb-8 space-y-4 text-center">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <Link
                 key={link.name}
                 to={link.path}
@@ -99,12 +105,15 @@ const Navbar: React.FC<NavbarProps> = ({ isAdmin, onLogout }) => {
               </Link>
             ))}
             {isAdmin && (
-               <button 
-               onClick={() => { onLogout(); setIsOpen(false); }}
-               className="block w-full text-center px-3 py-4 text-xl font-royal text-red-400 tracking-widest"
-             >
-               LOGOUT
-             </button>
+              <button
+                onClick={() => {
+                  onLogout();
+                  setIsOpen(false);
+                }}
+                className="block w-full text-center px-3 py-4 text-xl font-royal text-red-400 tracking-widest"
+              >
+                LOGOUT
+              </button>
             )}
             <Link
               to="/book"

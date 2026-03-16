@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Crown, Lock, User, ChevronRight, AlertCircle } from 'lucide-react';
 import { AdminCredentials } from '../types';
@@ -23,11 +22,10 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
       const response = await authService.login({ username, password });
       onLogin({
         username: response.data.user.username,
-        token: response.data.token
+        token: response.data.token,
       });
-    } catch (error: any) {
-      console.error('Login error:', error);
-      setError(error.response?.data?.message || 'Login failed. Please try again.');
+    } catch (error) {
+      setError((error as any).response?.data?.message || 'Login failed. Please try again.');
       setIsLoading(false);
     }
   };
@@ -35,13 +33,15 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
   return (
     <div className="min-h-screen pt-20 flex items-center justify-center px-4 bg-[url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-      
+
       <div className="relative z-10 max-w-md w-full glass-card p-10 rounded-3xl border-[#d4af37]/50 royal-shadow animate-scale-up">
         <div className="flex flex-col items-center mb-8">
           <div className="w-16 h-16 bg-[#d4af37]/20 rounded-full flex items-center justify-center border border-[#d4af37]/50 mb-4">
             <Crown className="text-[#d4af37]" size={32} />
           </div>
-          <h2 className="font-royal text-3xl font-black gold-gradient tracking-widest uppercase">Admin Access</h2>
+          <h2 className="font-royal text-3xl font-black gold-gradient tracking-widest uppercase">
+            Admin Access
+          </h2>
           <p className="text-gray-400 text-xs tracking-[0.3em] uppercase mt-2">Private Console</p>
         </div>
 
@@ -54,14 +54,16 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-gray-400 text-xs tracking-widest uppercase mb-2">Username</label>
+            <label className="block text-gray-400 text-xs tracking-widest uppercase mb-2">
+              Username
+            </label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-              <input 
+              <input
                 required
-                type="text" 
+                type="text"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={e => setUsername(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 bg-black/60 border border-white/10 rounded-lg focus:border-[#d4af37] outline-none transition-all text-white"
                 placeholder="Enter admin ID"
               />
@@ -69,14 +71,16 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
           </div>
 
           <div>
-            <label className="block text-gray-400 text-xs tracking-widest uppercase mb-2">Security Key</label>
+            <label className="block text-gray-400 text-xs tracking-widest uppercase mb-2">
+              Security Key
+            </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-              <input 
+              <input
                 required
-                type="password" 
+                type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 bg-black/60 border border-white/10 rounded-lg focus:border-[#d4af37] outline-none transition-all text-white"
                 placeholder="••••••••"
               />

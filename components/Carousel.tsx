@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Room } from '../types';
@@ -14,7 +13,6 @@ const Carousel: React.FC = () => {
         const response = await roomService.getAllRooms();
         setRooms(response.data.rooms);
       } catch (error) {
-        console.error('Failed to fetch rooms for carousel:', error);
       }
     };
 
@@ -24,14 +22,14 @@ const Carousel: React.FC = () => {
   useEffect(() => {
     if (rooms.length > 0) {
       const timer = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % rooms.length);
+        setCurrentIndex(prev => (prev + 1) % rooms.length);
       }, 5000);
       return () => clearInterval(timer);
     }
   }, [rooms]);
 
-  const next = () => setCurrentIndex((prev) => (prev + 1) % rooms.length);
-  const prev = () => setCurrentIndex((prev) => (prev - 1 + rooms.length) % rooms.length);
+  const next = () => setCurrentIndex(prev => (prev + 1) % rooms.length);
+  const prev = () => setCurrentIndex(prev => (prev - 1 + rooms.length) % rooms.length);
 
   if (rooms.length === 0) {
     return (
@@ -55,7 +53,10 @@ const Carousel: React.FC = () => {
         >
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear scale-110"
-            style={{ backgroundImage: `url(${room.image})`, transform: index === currentIndex ? 'scale(1)' : 'scale(1.1)' }}
+            style={{
+              backgroundImage: `url(${room.image})`,
+              transform: index === currentIndex ? 'scale(1)' : 'scale(1.1)',
+            }}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
           </div>

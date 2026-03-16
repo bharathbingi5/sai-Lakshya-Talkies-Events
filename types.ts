@@ -1,4 +1,3 @@
-
 export interface Room {
   _id?: string;
   roomId: string;
